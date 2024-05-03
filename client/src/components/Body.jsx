@@ -1,9 +1,9 @@
 import React from 'react'
 import {useNavigate} from "react-router-dom"
 
-const ChatBody = ({messages, typingStatus, lastMessageRef}) => { 
+function Body(props) { 
   const navigate = useNavigate()
-  
+  console.log(props);
 
   const handleLeaveChat = () => {
     localStorage.removeItem("userName")
@@ -13,32 +13,32 @@ const ChatBody = ({messages, typingStatus, lastMessageRef}) => {
   
   return (
     <>
-      <header className='chat__mainHeader'>
+      <header className='chatMainHeader'>
           <p>Chat Anonymosly</p>
-          <button className='leaveChat__btn' onClick={handleLeaveChat}>LEAVE CHAT</button>
+          <button className='leaveChatBtn' onClick={handleLeaveChat}>LEAVE CHAT</button>
         </header>
 
 
-        <div className='message__container'>
+        <div className='messageContainer'>
           {messages.map(message => (
             message.name === localStorage.getItem("userName") ? (
-              <div className="message__chats" key={message.id}>
-            <p className='sender__name'>You</p>
-            <div className='message__sender'>
+              <div className="messageChats" key={message.id}>
+            <p className='senderName'>You</p>
+            <div className='messageSender'>
                 <p>{message.text}</p>
             </div>
           </div>
             ): (
-              <div className="message__chats" key={message.id}>
+              <div className="messageChats" key={message.id}>
             <p>{message.name}</p>
-            <div className='message__recipient'>
+            <div className='messageRecipient'>
                 <p>{message.text}</p>
             </div>
           </div>
             )
             ))}
 
-          <div className='message__status'>
+          <div className='messageStatus'>
             <p>{typingStatus}</p>
           </div>
           <div ref={lastMessageRef} />   
@@ -47,4 +47,4 @@ const ChatBody = ({messages, typingStatus, lastMessageRef}) => {
   )
 }
 
-export default ChatBody
+export default Body

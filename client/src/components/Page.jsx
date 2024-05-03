@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useRef} from 'react'
-import ChatBar from './Bar'
-import ChatBody from './Body'
-import ChatFooter from './Footer'
+import { useEffect, useState, useRef } from 'react'
+import Bar from './Bar'
+import Body from './Body'
+import Footer from './Footer'
 
-const Page = ({socket}) => { 
+function Page(socket) { 
   const [messages, setMessages] = useState([])
   const [typingStatus, setTypingStatus] = useState("")
   const lastMessageRef = useRef(null);
-
+console.log(socket);
   useEffect(()=> {
     socket.on("messageResponse", data => setMessages([...messages, data]))
   }, [socket, messages])
@@ -23,10 +23,10 @@ const Page = ({socket}) => {
 
   return (
     <div className="chat">
-      <ChatBar socket={socket}/>
+      <Bar socket={socket}/>
       <div className='chat__main'>
-        <ChatBody messages={messages} typingStatus={typingStatus} lastMessageRef={lastMessageRef}/>
-        <ChatFooter socket={socket}/>
+        <Body messages={messages} typingStatus={typingStatus} lastMessageRef={lastMessageRef}/>
+        <Footer socket={socket}/>
       </div>
     </div>
   )

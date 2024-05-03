@@ -36,7 +36,7 @@ socketIO.on('connection', (socket) => {
 });
 
 app.get("/api", (req, res) => {
-  res.json({message: "Hello"})
+  res.json({message: "What are you doing in my swamp?"})
 });
 
    

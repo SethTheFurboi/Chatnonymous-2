@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const ChatFooter = ({socket}) => {
+function ChatFooter(socket) {
     const [message, setMessage] = useState("")
     const handleTyping = () => socket.emit("typing",`${localStorage.getItem("userName")} is typing`)
 
@@ -19,7 +19,7 @@ const ChatFooter = ({socket}) => {
         setMessage("")
     }
   return (
-    <div className='chat__footer'>
+    <div className='chatFooter'>
         <form className='form' onSubmit={handleSendMessage}>
           <input 
             type="text" 
